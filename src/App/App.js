@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Trainee from '../Trainee/Trainee';
+import Group from '../Group/Group';
 
 class App extends Component {
   constructor() {
@@ -8,16 +9,24 @@ class App extends Component {
     this.state = {
       traineeList: [],
       addTrainee: false,
+      groupList: [],
     };
   }
 
   componentDidMount() {
     this.refreshTraineeList();
+    this.refreshGroupList();
   }
 
   refreshTraineeList = () => {
     this.fetchTraineeList().then((traineeList) => {
       this.setState({ traineeList });
+    });
+  };
+
+  refreshGroupList = () => {
+    this.fetchGroups().then((groupList) => {
+      this.setState({ groupList });
     });
   };
 
@@ -41,6 +50,10 @@ class App extends Component {
     );
   };
 
+  fetchGroups = () => {
+    return fetch('http://localhost:8080/groups').then((response) => response.json());
+  };
+
   handleAddTraineeClick = () => {
     this.setState({ addTrainee: true });
   };
@@ -55,7 +68,7 @@ class App extends Component {
   };
 
   handleGroupingClick = () => {
-    this.fetchGrouping();
+    this.fetchGrouping().then(() => this.refreshGroupList());
   };
 
   render() {
@@ -67,6 +80,12 @@ class App extends Component {
             分组学员
           </button>
         </h1>
+        <div>
+          {this.state.groupList.map((group) => (
+            <Group key={group.id} name={group.name} traineeList={group.traineeList} />
+          ))}
+        </div>
+
         <h1>学员列表</h1>
         <div className="trainee_list">
           {this.state.traineeList.map((trainee) => (

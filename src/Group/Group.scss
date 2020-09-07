@@ -1,0 +1,20 @@
+@import '../style/_variables.scss';
+
+.group {
+  border: 1px solid $gray;
+  margin-bottom: 10px;
+
+  .name {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background-color: $gray;
+    color: white;
+  }
+
+  .trainees {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+}
