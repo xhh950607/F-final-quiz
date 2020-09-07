@@ -7,6 +7,21 @@ body {
 .App {
   background-color: $bg-gray;
   padding: 20px;
+  font-size: $base-font-size;
+
+  h1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      width: 100px;
+      height: 30px;
+      border: none;
+      color: white;
+      background-color: $primary-color;
+    }
+  }
 }
 
 .trainee_list {

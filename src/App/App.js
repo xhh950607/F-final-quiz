@@ -22,9 +22,7 @@ class App extends Component {
   };
 
   fetchTraineeList = () => {
-    return fetch('http://localhost:8080/trainees').then((response) => {
-      return response.json();
-    });
+    return fetch('http://localhost:8080/trainees').then((response) => response.json());
   };
 
   fetchAddTrainee = (data) => {
@@ -35,6 +33,12 @@ class App extends Component {
     }).then((response) => {
       return response.status === 201 ? Promise.resolve() : Promise.reject();
     });
+  };
+
+  fetchGrouping = () => {
+    return fetch('http://localhost:8080/groups/grouping').then((response) =>
+      response.status === 200 ? Promise.resolve() : Promise.reject()
+    );
   };
 
   handleAddTraineeClick = () => {
@@ -50,9 +54,19 @@ class App extends Component {
     }
   };
 
+  handleGroupingClick = () => {
+    this.fetchGrouping();
+  };
+
   render() {
     return (
       <div className="App">
+        <h1>
+          分组列表
+          <button type="button" onClick={this.handleGroupingClick}>
+            分组学员
+          </button>
+        </h1>
         <h1>学员列表</h1>
         <div className="trainee_list">
           {this.state.traineeList.map((trainee) => (
