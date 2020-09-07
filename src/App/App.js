@@ -82,7 +82,13 @@ class App extends Component {
         </h1>
         <div>
           {this.state.groupList.map((group) => (
-            <Group key={group.id} name={group.name} traineeList={group.traineeList} />
+            <Group
+              key={group.id}
+              id={group.id}
+              name={group.name}
+              traineeList={group.traineeList}
+              afterRename={this.refreshGroupList}
+            />
           ))}
         </div>
 
