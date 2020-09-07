@@ -67,6 +67,10 @@ class App extends Component {
     }
   };
 
+  handleInputBlur = () => {
+    this.setState({ addTrainee: false });
+  };
+
   handleGroupingClick = () => {
     this.fetchGrouping().then(() => this.refreshGroupList());
   };
@@ -99,7 +103,7 @@ class App extends Component {
           ))}
           {this.state.addTrainee ? (
             // eslint-disable-next-line jsx-a11y/no-autofocus
-            <input autoFocus onKeyDown={this.handleInputKeyDown} />
+            <input autoFocus onKeyDown={this.handleInputKeyDown} onBlur={this.handleInputBlur} />
           ) : (
             <button id="add_trainee_btn" type="button" onClick={this.handleAddTraineeClick}>
               +添加学员
