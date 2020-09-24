@@ -1,0 +1,25 @@
+@import '../../style/_variables.scss';
+
+.member {
+  width: 100px;
+  height: 35px;
+  margin: 8px;
+  text-align: center;
+  line-height: 35px;
+  background-color: $light-gray;
+}
+
+.pop-container{
+  width: fit-content;
+  display: flex;
+}
+
+.pop-content-item {
+  line-height: 30px;
+  margin-right: 10px;
+  background-color: $light-gray;
+
+  &:last-child{
+    margin-right: 0;
+  }
+}
